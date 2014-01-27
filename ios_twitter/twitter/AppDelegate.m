@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TwitterClient.h"
 #import "TimelineVC.h"
+#import "AddTweetVC.h"
 #import "SignedOutVC.h"
 
 @interface AppDelegate ()
@@ -116,8 +117,10 @@
 
 - (UINavigationController *)timelineNVC {
     if (!_timelineNVC) {
-        TimelineVC *timelineVC = [[TimelineVC alloc] init];
-        _timelineNVC = [[UINavigationController alloc] initWithRootViewController:timelineVC];
+//        AddTweetVC *timelineVC = [[AddTweetVC alloc] init];
+//        _timelineNVC = [[UINavigationController alloc] initWithRootViewController:timelineVC];
+       TimelineVC *timelineVC = [[TimelineVC alloc] init];
+       _timelineNVC = [[UINavigationController alloc] initWithRootViewController:timelineVC];
     }
     
     return _timelineNVC;

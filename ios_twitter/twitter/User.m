@@ -17,6 +17,24 @@ NSString * const kCurrentUserKey = @"kCurrentUserKey";
 
 static User *_currentUser;
 
+
+- (NSString *)screenName {
+    NSString *tmpScreenName = [self.data valueOrNilForKeyPath:@"screen_name"];
+    if (tmpScreenName) {
+        return [NSString stringWithFormat:@"@%@ ", tmpScreenName ];
+    }
+    return tmpScreenName;
+}
+
+- (NSString *)name {
+    return [self.data valueOrNilForKeyPath:@"name"];
+}
+
+- (NSURL *)profileImageURL {
+    NSString *tmpURL = [self.data valueOrNilForKeyPath:@"profile_image_url"];
+    return [[NSURL alloc] initWithString:tmpURL];
+}
+
 + (User *)currentUser {
     if (!_currentUser) {
         NSData *userData = [[NSUserDefaults standardUserDefaults] dataForKey:kCurrentUserKey];

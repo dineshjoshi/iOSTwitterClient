@@ -52,6 +52,32 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
     [self getPath:@"1.1/account/verify_credentials.json" parameters:nil success:success failure:failure];
 }
 
+- (void)doTweetStatus:(NSString*)status inReplyToStatusId:(NSString*) inReplyToStatusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status": status}];
+    if (inReplyToStatusId) {
+        [params setObject:inReplyToStatusId forKey:@"in_reply_to_status_id"];
+    }
+    
+    [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+}
+
+- (void)doRetweet:(NSString*) retweetStatusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": retweetStatusId}];
+    NSString *path = [NSString stringWithFormat:@"/1.1/statuses/retweet/%@.json", retweetStatusId];
+    
+    [self postPath:path parameters:params success:success failure:failure];
+}
+
+- (void)makeFavorite:(NSString*) statusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": statusId}];
+    
+    [self postPath:@"/1.1/favorites/create.json" parameters:params success:success failure:failure];
+}
+
+
 #pragma mark - Statuses API
 
 - (void)homeTimelineWithCount:(int)count sinceId:(int)sinceId maxId:(int)maxId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
