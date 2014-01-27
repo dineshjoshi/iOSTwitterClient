@@ -1,10 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4447" systemVersion="13A451" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3671"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="107" id="Tzl-uc-gki" customClass="TweetCell">
+            <rect key="frame" x="0.0" y="0.0" width="416" height="107"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tzl-uc-gki" id="h1C-wg-y7g">
+                <rect key="frame" x="0.0" y="0.0" width="416" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-Jx-y6g">
+                        <rect key="frame" x="2" y="2" width="42" height="42"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="LEa-tw-g5v"/>
+                            <constraint firstAttribute="height" constant="42" id="tgB-bS-UhP"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Display Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="148" translatesAutoresizingMaskIntoConstraints="NO" id="MBr-ks-vUn">
+                        <rect key="frame" x="46" y="2" width="148" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@handle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="4nR-Xh-R8d">
+                        <rect key="frame" x="195" y="2" width="140" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1d ago" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="53" translatesAutoresizingMaskIntoConstraints="NO" id="S9Q-rf-uB0">
+                        <rect key="frame" x="363" y="0.0" width="53" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nln-BQ-mDO">
+                        <rect key="frame" x="46" y="19" width="368" height="87"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Tweet text">
+                                <attributes>
+                                    <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4nR-Xh-R8d" firstAttribute="top" secondItem="h1C-wg-y7g" secondAttribute="top" constant="2" id="DB0-Yf-Ntv"/>
+                    <constraint firstItem="4nR-Xh-R8d" firstAttribute="leading" secondItem="MBr-ks-vUn" secondAttribute="trailing" constant="3" id="Dbs-1k-CbN"/>
+                    <constraint firstAttribute="trailing" secondItem="nln-BQ-mDO" secondAttribute="trailing" constant="2" id="PG9-mc-las"/>
+                    <constraint firstAttribute="trailing" secondItem="S9Q-rf-uB0" secondAttribute="trailing" constant="2" id="PXu-aA-PDz"/>
+                    <constraint firstAttribute="bottom" secondItem="nln-BQ-mDO" secondAttribute="bottom" id="bQr-A6-cAo"/>
+                    <constraint firstItem="nln-BQ-mDO" firstAttribute="top" secondItem="MBr-ks-vUn" secondAttribute="bottom" constant="2" id="gvi-lD-FAW"/>
+                    <constraint firstItem="Bpk-Jx-y6g" firstAttribute="leading" secondItem="h1C-wg-y7g" secondAttribute="leading" constant="2" id="oEd-U0-DfQ"/>
+                    <constraint firstItem="nln-BQ-mDO" firstAttribute="leading" secondItem="Bpk-Jx-y6g" secondAttribute="trailing" constant="2" id="p7c-h1-whF"/>
+                    <constraint firstItem="S9Q-rf-uB0" firstAttribute="top" secondItem="h1C-wg-y7g" secondAttribute="top" constant="2" id="qJ3-ag-QwI"/>
+                    <constraint firstItem="Bpk-Jx-y6g" firstAttribute="top" secondItem="h1C-wg-y7g" secondAttribute="top" constant="2" id="tEH-fC-Tgv"/>
+                    <constraint firstItem="MBr-ks-vUn" firstAttribute="top" secondItem="h1C-wg-y7g" secondAttribute="top" constant="2" id="uMh-l7-bZD"/>
+                    <constraint firstItem="MBr-ks-vUn" firstAttribute="leading" secondItem="Bpk-Jx-y6g" secondAttribute="trailing" constant="2" id="uqz-8d-L6D"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="displayname_label" destination="MBr-ks-vUn" id="ajo-ps-F11"/>
+                <outlet property="handle_label" destination="4nR-Xh-R8d" id="GDF-fB-rqv"/>
+                <outlet property="profile_image_view" destination="Bpk-Jx-y6g" id="cY4-WV-IIa"/>
+                <outlet property="time_label" destination="S9Q-rf-uB0" id="ZDz-OT-Hq7"/>
+                <outlet property="tweet_text" destination="nln-BQ-mDO" id="VC9-SZ-HKx"/>
+            </connections>
+        </tableViewCell>
     </objects>
 </document>

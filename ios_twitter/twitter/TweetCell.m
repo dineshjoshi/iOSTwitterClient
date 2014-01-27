@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 
 @implementation TweetCell
+@synthesize profile_image_view, displayname_label, handle_label;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -7,10 +7,14 @@
 //
 
 #import "TimelineVC.h"
+#import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
+
 
 @interface TimelineVC ()
 
 @property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, strong) UINib *cellNib;
 
 - (void)onSignOutButton;
 - (void)reload;
@@ -24,6 +28,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"Twitter";
+        self.cellNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
         
         [self reload];
     }
@@ -35,6 +40,9 @@
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    
+//    [self.tableView registerClass:[TweetCell class]forCellReuseIdentifier:@"TweetCell"];
+    [self.tableView registerNib:self.cellNib forCellReuseIdentifier:@"TweetCell"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -63,15 +71,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    static NSString *CellIdentifier = @"TweetCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 
     Tweet *tweet = self.tweets[indexPath.row];
-    cell.textLabel.text = tweet.text;
+    TweetCell *twCell = (TweetCell *) cell;
     
-    return cell;
+    twCell.handle_label.text = [NSString stringWithFormat:@"@%@", tweet.screen_name];
+    twCell.displayname_label.text = tweet.name;
+    twCell.tweet_text.text = tweet.text;
+    [twCell.profile_image_view setImageWithURL:[NSURL URLWithString:tweet.profile_image_url]];
+
+//    [NSString stringWithFormat:@"%@ %@ %@", tweet.name, tweet.screen_name, tweet.text];
+    return twCell;
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Tweet *tweet = self.tweets[indexPath.row];
+	NSString *twText = tweet.text;
+    
+	CGRect labelRect = [twText
+                       boundingRectWithSize:CGSizeMake(
+                                                       CGRectGetWidth(CGRectIntegral(tableView.bounds)),
+                                                       MAXFLOAT)
+                       options:NSStringDrawingUsesLineFragmentOrigin
+                       attributes:nil
+                       context:nil];
+	return CGRectGetHeight(CGRectIntegral(labelRect)) + 50;
+}
+
 
 /*
 // Override to support conditional editing of the table view.
